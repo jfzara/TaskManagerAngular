@@ -17,6 +17,10 @@ export class TaskService {
         return this.tasks;
     }
 
+    getTask(id: string): Task | undefined{
+        return this.tasks.find(task => task.id === id);
+    }
+
     updateTask(updatedTask: Task) {
         const index = this.tasks.findIndex(task => task.id === updatedTask.id);
         if (index !== -1) {

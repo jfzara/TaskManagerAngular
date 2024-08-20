@@ -10,6 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { TaskListInputComponent } from './task-list-input/task-list-input.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { TaskEditComponent } from './task-edit/task-edit.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,13 +21,17 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     FirstComponentComponent,
     TaskListInputComponent,
     TaskListComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    TaskEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     provideClientHydration(),
