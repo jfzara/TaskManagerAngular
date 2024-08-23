@@ -14,6 +14,8 @@ import { TaskEditComponent } from './task-edit/task-edit.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TaskListInputComponent,
     TaskListComponent,
     TaskDetailComponent,
-    TaskEditComponent
+    TaskEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })
