@@ -23,5 +23,22 @@ export class TaskApiService {
     });
     return this.http.get(`${this.apiUrl}/assignedto`, { headers })
   }
+
+  updateTaskStatus(token: string, taskUid: string, done: boolean): Observable<any>{
+    const headers = new HttpHeaders({
+      'x-access-token': token
+    });
+    const body = {done};
+
+    return this.http.patch(`${this.apiUrl}/${taskUid}`, body, { headers });
+  }
+
+  deleteTask(token: string, taskUid: string): Observable<any>{
+    const headers = new HttpHeaders({
+      'x-access-token': token
+    });
+
+    return this.http.delete(`${this.apiUrl}/${taskUid}`, { headers });
+  }
   
 }
