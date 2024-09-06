@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,25 +9,25 @@ import { Observable } from 'rxjs';
 export class TaskApiService {
   private apiUrl = 'http://127.0.0.1:5000/v1/tasks';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getTasksCreatedBy(token: string): Observable<any>{
     const headers = new HttpHeaders({
-      'x-access-token': token
+      'x-access-token': this.authService.getToken() || "",
     });
     return this.http.get(`${this.apiUrl}/createdby`, { headers })
   }
 
   getTasksAssignedTo(token: string): Observable<any>{
     const headers = new HttpHeaders({
-      'x-access-token': token
+      'x-access-token': this.authService.getToken() || "",
     });
     return this.http.get(`${this.apiUrl}/assignedto`, { headers })
   }
 
   updateTaskStatus(token: string, taskUid: string, done: boolean): Observable<any>{
     const headers = new HttpHeaders({
-      'x-access-token': token
+      'x-access-token': this.authService.getToken() || "",
     });
     const body = {done};
 
@@ -35,10 +36,21 @@ export class TaskApiService {
 
   deleteTask(token: string, taskUid: string): Observable<any>{
     const headers = new HttpHeaders({
-      'x-access-token': token
+      'x-access-token': this.authService.getToken() || "",
     });
 
     return this.http.delete(`${this.apiUrl}/${taskUid}`, { headers });
+  }
+
+  createTask(description: string, assignedToUid: string): Observable<any>{
+    const headers = new HttpHeaders({
+      'x-access-token': this.authService.getToken() || "",
+    });
+    const body = {
+      description,
+      assignedToUid
+    };
+    return this.http.post(this.apiUrl, body, {headers})
   }
   
 }

@@ -16,6 +16,10 @@ import { MatInputModule } from '@angular/material/input'
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { TaskCreateComponent } from './task-create/task-create.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { LoginComponent } from './login/login.component';
     TaskListComponent,
     TaskDetailComponent,
     TaskEditComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent,
+    TaskCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,9 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [
     provideClientHydration(),

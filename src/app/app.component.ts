@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Task } from './models/task.model';
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,19 @@ export class AppComponent {
     {id: "4", title: "Task 4", description: "Description for task 4", isDone: true}
   ]
 
+  isAuth: boolean;
+
+
+  constructor(private authService: AuthService, private router: Router){
+    this.isAuth = this.authService.isAuthenticated();
+
+    router.events.subscribe(
+      ()=>{
+        this.isAuth = this.authService.isAuthenticated();
+      }
+    );
+  }
+
   updateTask(updatedTask: Task){
     console.log(updatedTask)
     const index = this.tasks.findIndex(task => task.id === updatedTask.id);
@@ -29,5 +44,10 @@ export class AppComponent {
   testOutput(text: string){
     console.log("AppComponent testOutput", text);
     this.title = this.title + text;
+  }
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(["/login"]);
   }
 }
