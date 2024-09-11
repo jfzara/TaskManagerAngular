@@ -6,7 +6,7 @@
     background-color: #f4f5f7;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    
+    min-height: 100%;
 }
 
 h2 {
@@ -95,4 +95,30 @@ button[color="primary"] {
 button[color="warn"]:hover,
 button[color="primary"]:hover {
     opacity: 0.8;
+}
+
+.new-task{
+    background-color: #53e0589b;
+    animation: highlight 5s ease-in-out, slideIn 1s ease-out;
+}
+
+@keyframes highlight {
+    0% {
+        background-color: #53e0589b;
+    }
+    100% {
+        background-color: white;
+    }
+}
+
+@keyframes slideIn {
+    0%{
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

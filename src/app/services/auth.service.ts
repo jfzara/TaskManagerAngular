@@ -8,16 +8,22 @@ import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
 export class AuthService {
     constructor(@Inject(PLATFORM_ID) private platformId: any){}
     
-    setToken(token: string){
+    setToken(token: string, loggedUser: any){
         sessionStorage.setItem("authToken", token);
+        sessionStorage.setItem("authId", loggedUser.uid);
     }
 
     getToken(): string | null{
         return sessionStorage.getItem("authToken");
     }
 
+    getId(): string | null{
+        return sessionStorage.getItem("authId");
+    }
+
     logout() {
         sessionStorage.removeItem("authToken");
+        sessionStorage.removeItem("authId");
     }
 
     isAuthenticated(): boolean{

@@ -17,7 +17,7 @@
 
     <h2>Tasks Assigned To</h2>
     <div class="flex-row">
-        <mat-card *ngFor="let task of assignedTasks" class="task-card">
+        <mat-card *ngFor="let task of assignedTasks" [ngClass]="{'new-task': shouldHighlight(task.taskUid)}" class="task-card">
             <mat-card-header>
                 <mat-card-title>{{task.description}}</mat-card-title>
             </mat-card-header>
