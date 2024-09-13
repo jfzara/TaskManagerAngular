@@ -20,6 +20,7 @@ import { SignupComponent } from './signup/signup.component';
 import { TaskCreateComponent } from './task-create/task-create.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    IonicModule.forRoot()
   ],
   providers: [
     provideClientHydration(),

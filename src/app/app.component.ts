@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Task } from './models/task.model';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +19,12 @@ export class AppComponent {
   ]
 
   isAuth: boolean;
+  isMobile: boolean;
 
 
   constructor(private authService: AuthService, private router: Router){
     this.isAuth = this.authService.isAuthenticated();
-
+    this.isMobile = Capacitor.isNativePlatform();
     router.events.subscribe(
       ()=>{
         this.isAuth = this.authService.isAuthenticated();

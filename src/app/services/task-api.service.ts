@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class TaskApiService {
-  private apiUrl = 'http://127.0.0.1:5000/v1/tasks';
+  private apiUrl = 'https://monkfish-app-9x56s.ondigitalocean.app/v1/tasks';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

@@ -7,6 +7,7 @@ import { TaskApiService } from '../services/task-api.service';
 import { WebSocketService } from '../services/websocket.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { AuthService } from '../services/auth.service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-task-list',
@@ -15,6 +16,9 @@ import { AuthService } from '../services/auth.service';
 })
 export class TaskListComponent {
   tasks: Task[] = [];
+  isMobile: boolean;
+  showCreatedBy: boolean;
+  showAssignedTo: boolean;
 
   createdTasks: TaskAPI[] = [];
   assignedTasks: TaskAPI[] = [];
@@ -28,7 +32,13 @@ export class TaskListComponent {
     private snackBar: MatSnackBar,
     private authService: AuthService
   ){
+    this.isMobile = Capacitor.isNativePlatform();
+    this.showCreatedBy = true;
+    this.showAssignedTo = false;
+
     this.fetchTasks();
+
+    
 
     this.webSocketService.getMessage().subscribe(
       (message: any) => {
@@ -87,5 +97,14 @@ export class TaskListComponent {
       return true;
     }
     return false;
+  }
+
+  shouldShowCreatedBy(){
+    this.showCreatedBy = true;
+    this.showAssignedTo = false;
+  }
+  shouldShowAssingedTo(){
+    this.showCreatedBy = false;
+    this.showAssignedTo = true;
   }
 }
