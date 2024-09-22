@@ -107,4 +107,9 @@ export class TaskListComponent {
     this.showCreatedBy = false;
     this.showAssignedTo = true;
   }
+
+  createTask() {
+    this.router.navigate(['/create']);  
+  }
+
 }

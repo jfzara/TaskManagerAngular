@@ -3,6 +3,7 @@
     <div *ngIf="isMobile">
         <button mat-button color="secondary" (click)="shouldShowCreatedBy()">Created By</button>
         <button mat-button color="secondary" (click)="shouldShowAssingedTo()">Assigned To</button>
+        <button mat-button color="primary" (click)="createTask()">Create</button> <!-- Ajout du bouton Create ici -->
     </div>
 
     <ng-container *ngIf="!isMobile || (isMobile && showCreatedBy)">
@@ -40,4 +41,5 @@
             </mat-card>
         </div>
     </ng-container>    
+
 </div>
